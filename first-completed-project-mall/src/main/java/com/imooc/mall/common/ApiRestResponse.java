@@ -29,6 +29,7 @@ public class ApiRestResponse<T> {
     public static <T> ApiRestResponse<T> success(){
         return new ApiRestResponse<>();
     }
+
     public static <T> ApiRestResponse<T> success(T result){
         ApiRestResponse<T> response = new ApiRestResponse<>();
         response.setData(result);

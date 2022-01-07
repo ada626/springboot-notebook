@@ -1,6 +1,12 @@
 package com.imooc.mall.exception;
+
 public enum MallExceptionEnum {
-    NEED_USER_NAME(10001,"用户名不能为空");
+    NEED_USER_NAME(10001,"用户名不能为空"),
+    NEED_PASSWORD(10002,"密码不能为空"),
+    PASSWORD_NOT_QUALIFIED(10003,"密码不够长"),
+    USERNAME_EXISTED(10004,"用户名已存在"),
+    INSERT_FAILED(10005,"插入失败，请重试");
+
     /*
     异常码
      */

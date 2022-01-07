@@ -1,4 +1,6 @@
 package com.imooc.mall.service.impl;
+import com.imooc.mall.exception.MallException;
+import com.imooc.mall.exception.MallExceptionEnum;
 import com.imooc.mall.model.dao.UserMapper;
 import com.imooc.mall.model.pojo.User;
 import com.imooc.mall.service.UserService;
@@ -15,5 +17,21 @@ public class UserServiceImpl implements UserService {
     public User getUser(){
         //通过主键查询对象
         return userMapper.selectByPrimaryKey(4);
+    }
+    @Override
+    public void register(String userName, String password) throws MallException {
+        //查询用户名是否存在，不允许重名
+        User result = userMapper.selectByUserName(userName);
+        if(result!=null){
+            throw new MallException(MallExceptionEnum.USERNAME_EXISTED);
+        }
+        //写到数据库
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(password);
+        int count = userMapper.insertSelective(user);
+        if(count==0){
+            throw new MallException(MallExceptionEnum.INSERT_FAILED);
+        }
     }
 }
