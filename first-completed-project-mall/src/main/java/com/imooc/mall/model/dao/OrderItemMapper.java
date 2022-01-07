@@ -1,7 +1,9 @@
-package com.example.mall.model.dao;
+package com.imooc.mall.model.dao;
 
-import com.example.mall.model.pojo.OrderItem;
+import com.imooc.mall.model.pojo.OrderItem;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrderItemMapper {
     int deleteByPrimaryKey(Integer id);
 

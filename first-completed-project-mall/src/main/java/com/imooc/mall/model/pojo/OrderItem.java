@@ -1,4 +1,4 @@
-package com.example.mall.model.pojo;
+package com.imooc.mall.model.pojo;
 
 import java.util.Date;
 

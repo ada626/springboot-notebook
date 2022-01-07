@@ -1,7 +1,9 @@
-package com.example.mall.model.dao;
+package com.imooc.mall.model.dao;
 
-import com.example.mall.model.pojo.Cart;
+import com.imooc.mall.model.pojo.Cart;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CartMapper {
     int deleteByPrimaryKey(Integer id);
 
