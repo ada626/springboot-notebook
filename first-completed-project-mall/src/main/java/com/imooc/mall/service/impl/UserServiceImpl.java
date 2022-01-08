@@ -19,15 +19,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(4);
     }
     @Override
-    public void register(String userName, String password) throws MallException {
+    public void register(String username, String password) throws MallException {
         //查询用户名是否存在，不允许重名
-        User result = userMapper.selectByUserName(userName);
+        User result = userMapper.selectByUserName(username);
         if(result!=null){
             throw new MallException(MallExceptionEnum.USERNAME_EXISTED);
         }
         //写到数据库
         User user = new User();
-        user.setUsername(userName);
+        user.setUsername(username);
         user.setPassword(password);
         int count = userMapper.insertSelective(user);
         if(count==0){

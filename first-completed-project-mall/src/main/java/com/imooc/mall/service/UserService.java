@@ -6,6 +6,6 @@ import com.imooc.mall.model.pojo.User;
 public interface UserService {
     User getUser();
 
-    void register(String userName, String passWord) throws MallException;
+    void register(String username, String passWord) throws MallException;
 }
 
