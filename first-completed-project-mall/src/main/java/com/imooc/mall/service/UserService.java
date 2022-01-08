@@ -7,5 +7,7 @@ public interface UserService {
     User getUser();
 
     void register(String username, String passWord) throws MallException;
+
+    User login(String username, String password) throws MallException;
 }
 

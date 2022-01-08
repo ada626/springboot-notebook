@@ -1,6 +1,7 @@
 package com.imooc.mall.controller;
 
 import com.imooc.mall.common.ApiRestResponse;
+import com.imooc.mall.common.Constant;
 import com.imooc.mall.exception.MallException;
 import com.imooc.mall.exception.MallExceptionEnum;
 import com.imooc.mall.model.pojo.User;
@@ -9,6 +10,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -36,5 +39,19 @@ public class UserController {
         }
         userService.register(username,password);
         return ApiRestResponse.success();
+    }
+    @PostMapping({"/login"})
+    @ResponseBody
+    public ApiRestResponse login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws MallException {
+        if (StringUtils.isEmpty(username)) {
+            return ApiRestResponse.error(MallExceptionEnum.NEED_USER_NAME);
+        }
+        if (StringUtils.isEmpty(password)) {
+            return ApiRestResponse.error(MallExceptionEnum.NEED_PASSWORD);
+        }
+        User user = userService.login(username,password);
+        user.setPassword(null);
+        session.setAttribute(Constant.MALL_USER,user);
+        return ApiRestResponse.success(user);
     }
 }

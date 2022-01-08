@@ -6,6 +6,7 @@ public enum MallExceptionEnum {
     PASSWORD_NOT_QUALIFIED(10003,"密码不够长"),
     USERNAME_EXISTED(10004,"用户名已存在"),
     INSERT_FAILED(10005,"插入失败，请重试"),
+    WRONG_PASSWORD(10006,"密码错误，请重试"),
     SYSTEM_ERROR(20000,"系统异常");
 
     /*
