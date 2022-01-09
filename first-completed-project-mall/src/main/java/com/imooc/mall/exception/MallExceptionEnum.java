@@ -9,6 +9,7 @@ public enum MallExceptionEnum {
     WRONG_PASSWORD(10006,"密码错误，请重试"),
     NEED_LOGIN(10007,"请登录"),
     UPDATE_FIAILED(10008,"请登录"),
+    NEED_ADMIN(10009,"非管理员，拒绝访问"),
     SYSTEM_ERROR(20000,"系统异常");
 
     /*

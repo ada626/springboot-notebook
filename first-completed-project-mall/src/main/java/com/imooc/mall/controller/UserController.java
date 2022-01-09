@@ -74,5 +74,23 @@ public class UserController {
         session.removeAttribute(Constant.MALL_USER);
         return ApiRestResponse.success();
     }
+    @PostMapping({"/adminlogin"})
+    @ResponseBody
+    public ApiRestResponse adminlogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws MallException {
+        if (StringUtils.isEmpty(username)) {
+            return ApiRestResponse.error(MallExceptionEnum.NEED_USER_NAME);
+        }
+        if (StringUtils.isEmpty(password)) {
+            return ApiRestResponse.error(MallExceptionEnum.NEED_PASSWORD);
+        }
+        User user = userService.login(username,password);
+        //check if user is admin
+        if (userService.checkAdminRole(user)) {
+            user.setPassword(null);
+            session.setAttribute(Constant.MALL_USER,user);
+            return ApiRestResponse.success(user);
+        }
+       return ApiRestResponse.error(MallExceptionEnum.NEED_ADMIN);
 
+    }
 }

@@ -11,5 +11,7 @@ public interface UserService {
     User login(String username, String password) throws MallException;
 
     void updateUserInfo(User user) throws MallException;
+
+    boolean checkAdminRole(User user);
 }
 
