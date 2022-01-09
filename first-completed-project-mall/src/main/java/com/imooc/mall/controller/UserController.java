@@ -68,4 +68,11 @@ public class UserController {
         userService.updateUserInfo(user);
         return ApiRestResponse.success();
     }
+    @PostMapping("/user/logout")
+    @ResponseBody
+    public ApiRestResponse logout(HttpSession session){
+        session.removeAttribute(Constant.MALL_USER);
+        return ApiRestResponse.success();
+    }
+
 }
