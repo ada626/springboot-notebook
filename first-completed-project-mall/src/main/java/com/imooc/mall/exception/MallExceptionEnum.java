@@ -7,6 +7,8 @@ public enum MallExceptionEnum {
     USERNAME_EXISTED(10004,"用户名已存在"),
     INSERT_FAILED(10005,"插入失败，请重试"),
     WRONG_PASSWORD(10006,"密码错误，请重试"),
+    NEED_LOGIN(10007,"请登录"),
+    UPDATE_FIAILED(10008,"请登录"),
     SYSTEM_ERROR(20000,"系统异常");
 
     /*

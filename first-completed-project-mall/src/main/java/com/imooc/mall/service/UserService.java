@@ -9,5 +9,7 @@ public interface UserService {
     void register(String username, String passWord) throws MallException;
 
     User login(String username, String password) throws MallException;
+
+    void updateUserInfo(User user) throws MallException;
 }
 

@@ -54,4 +54,18 @@ public class UserController {
         session.setAttribute(Constant.MALL_USER,user);
         return ApiRestResponse.success(user);
     }
+
+    @PostMapping({"/user/update"})
+    @ResponseBody
+    public ApiRestResponse updateUserInfo(HttpSession session,@RequestParam("signature") String signature) throws MallException {
+        User currentUser = (User) session.getAttribute(Constant.MALL_USER);
+        if(currentUser==null){
+            return ApiRestResponse.error(MallExceptionEnum.NEED_LOGIN);
+        }
+        User user = new User();
+        user.setId(currentUser.getId());
+        user.setPersonalizedSignature(signature);
+        userService.updateUserInfo(user);
+        return ApiRestResponse.success();
+    }
 }
