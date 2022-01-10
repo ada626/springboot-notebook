@@ -1,6 +1,6 @@
 package com.imooc.mall.exception;
 
-public class MallException extends Exception{
+public class MallException extends RuntimeException{
     public Integer getCode() {
         return code;
     }

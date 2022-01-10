@@ -26,11 +26,32 @@ public class UserServiceImpl implements UserService {
         //查询用户名是否存在，不允许重名
         User result = userMapper.selectByUserName(username);
         if(result!=null){
-            throw new MallException(MallExceptionEnum.USERNAME_EXISTED);
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
         }
         //写到数据库
         User user = new User();
         user.setUsername(username);
+        try {
+            user.setPassword(MD5Utils.getMD5Str(password));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        int count = userMapper.insertSelective(user);
+        if(count==0){
+            throw new MallException(MallExceptionEnum.INSERT_FAILED);
+        }
+    }
+    @Override
+    public void adminRegister(String username, String password,Integer role) throws MallException {
+        //查询用户名是否存在，不允许重名
+        User result = userMapper.selectByUserName(username);
+        if(result!=null){
+            throw new MallException(MallExceptionEnum.NAME_EXISTED);
+        }
+        //写到数据库
+        User user = new User();
+        user.setUsername(username);
+        user.setRole(role);
         try {
             user.setPassword(MD5Utils.getMD5Str(password));
         } catch (NoSuchAlgorithmException e) {

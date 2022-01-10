@@ -4,12 +4,13 @@ public enum MallExceptionEnum {
     NEED_USER_NAME(10001,"用户名不能为空"),
     NEED_PASSWORD(10002,"密码不能为空"),
     PASSWORD_NOT_QUALIFIED(10003,"密码不够长"),
-    USERNAME_EXISTED(10004,"用户名已存在"),
-    INSERT_FAILED(10005,"插入失败，请重试"),
+    NAME_EXISTED(10004,"不允许重名"),
+    INSERT_FAILED(10005,"新增失败，请重试"),
     WRONG_PASSWORD(10006,"密码错误，请重试"),
     NEED_LOGIN(10007,"请登录"),
     UPDATE_FIAILED(10008,"请登录"),
     NEED_ADMIN(10009,"非管理员，拒绝访问"),
+    PARA_ERROR(100010,"参数异常"),
     SYSTEM_ERROR(20000,"系统异常");
 
     /*

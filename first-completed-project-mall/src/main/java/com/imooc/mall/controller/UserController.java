@@ -40,6 +40,27 @@ public class UserController {
         userService.register(username,password);
         return ApiRestResponse.success();
     }
+
+    @PostMapping({"/admin/register"})
+    @ResponseBody
+    public ApiRestResponse adminRegister(@RequestParam("username") String username, @RequestParam("password") String password,@RequestParam("role") Integer role) throws MallException {
+        if(StringUtils.isEmpty(username)){
+            return ApiRestResponse.error(MallExceptionEnum.NEED_USER_NAME);
+        }
+        if(StringUtils.isEmpty(password)){
+            return ApiRestResponse.error(MallExceptionEnum.NEED_PASSWORD);
+        }
+        //密码长度不少于8位
+        if (role!=2){
+            return ApiRestResponse.error(MallExceptionEnum.PARA_ERROR);
+        }
+        if(password.length()< 8){
+            return ApiRestResponse.error(MallExceptionEnum.PASSWORD_NOT_QUALIFIED);
+        }
+        userService.adminRegister(username,password,role);
+        return ApiRestResponse.success();
+    }
+
     @PostMapping({"/login"})
     @ResponseBody
     public ApiRestResponse login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws MallException {
@@ -74,7 +95,7 @@ public class UserController {
         session.removeAttribute(Constant.MALL_USER);
         return ApiRestResponse.success();
     }
-    @PostMapping({"/adminlogin"})
+    @PostMapping({"/admin/login"})
     @ResponseBody
     public ApiRestResponse adminlogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) throws MallException {
         if (StringUtils.isEmpty(username)) {
@@ -83,6 +104,7 @@ public class UserController {
         if (StringUtils.isEmpty(password)) {
             return ApiRestResponse.error(MallExceptionEnum.NEED_PASSWORD);
         }
+
         User user = userService.login(username,password);
         //check if user is admin
         if (userService.checkAdminRole(user)) {
