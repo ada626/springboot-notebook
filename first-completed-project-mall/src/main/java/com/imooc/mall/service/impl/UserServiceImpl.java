@@ -85,9 +85,12 @@ public class UserServiceImpl implements UserService {
             throw new MallException(MallExceptionEnum.UPDATE_FIAILED);
         }
     }
+
     @Override
     public boolean checkAdminRole(User user){
         //1 for user, 2 for administer
         return user.getRole().equals(2);
     }
+
+
 }

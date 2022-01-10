@@ -115,4 +115,6 @@ public class UserController {
        return ApiRestResponse.error(MallExceptionEnum.NEED_ADMIN);
 
     }
+
+
 }

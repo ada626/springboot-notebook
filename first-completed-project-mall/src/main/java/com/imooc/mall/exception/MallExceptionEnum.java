@@ -11,8 +11,8 @@ public enum MallExceptionEnum {
     UPDATE_FIAILED(10008,"请登录"),
     NEED_ADMIN(10009,"非管理员，拒绝访问"),
     PARA_ERROR(100010,"参数异常"),
+    ID_EXIST(100011,"id已存在"),
     SYSTEM_ERROR(20000,"系统异常");
-
     /*
     异常码
      */
